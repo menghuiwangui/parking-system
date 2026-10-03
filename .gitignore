@@ -1,0 +1,29 @@
+# Java / Spring Boot 后端忽略
+target/
+*.class
+*.jar
+*.war
+.mvn/
+
+# Vue / 前端忽略
+node_modules/
+dist/
+dist-ssr/
+
+# IDE 编辑器配置
+.idea/
+.vscode/
+*.iml
+*.suo
+*.ntvs*
+
+# 环境变量和敏感信息
+.env
+.env.local
+application-prod.yml
+
+# 日志和系统文件
+*.log
+logs/
+.DS_Store
+Thumbs.db
