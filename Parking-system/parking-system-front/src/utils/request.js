@@ -10,8 +10,9 @@ const request = axios.create({
 
 // 请求拦截器：自动带 token
 request.interceptors.request.use((config) => {
-  const store = useUserStore
+  const store = useUserStore()
   if (store.token) {
+    console.log(store.token)
     config.headers.Authorization = 'Bearer ' + store.token
   }
   return config
@@ -30,7 +31,7 @@ request.interceptors.response.use(
   (error) => {
     // 401 → 清token跳登录；403 → 提示无权限
     // 可选链 如果 error.response 存在，就取它的 status；如果不存在，就直接返回 undefined，不会报错。
-    if (error.response?.status === 400) {
+    if (error.response?.status === 401) {
       const store = useUserStore()
       store.logout()
       ElMessage.error('登录已过期，请重新登录')

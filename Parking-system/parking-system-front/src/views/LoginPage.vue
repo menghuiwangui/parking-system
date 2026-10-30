@@ -71,6 +71,12 @@ async function onSubmit() {
   } finally {
     loading.value = false
   }
+
+//   const data = await loginApi(form)
+//   console.log('登录返回的data =', data)          // ① 看有没有 token 字段
+//   console.log('即将存入 =', data?.token)         // ② 看 token 是不是 undefined
+//   userStore.setLogin(data)
+//   console.log('存完再读 =', localStorage.getItem('token'))  // ③ 验证落库
 }
 </script>
 

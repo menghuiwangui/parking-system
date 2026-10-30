@@ -9,9 +9,8 @@ import pinia from './store'
 
 const app = createApp(App)
 
+app.use(pinia)  // ← 必须在 router 之前
 app.use(router)
 
 app.use(ElementPlus, { locale: zhCn })
-app.use(pinia)
-
 app.mount('#app')

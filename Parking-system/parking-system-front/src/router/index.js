@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 // 路由 + 路由守卫
 import { useUserStore } from '@/store/user'
+import { ElMessage } from 'element-plus'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,9 +10,15 @@ const router = createRouter({
     { path: '/register', name: 'Register', component: () => import('@/views/RegisterPage.vue') },
     {
       path: '/',
-      name: 'Home',
-      component: () => import('@/views/HomePage.vue'),
-      meta: { requiresAuth: true }, // 路由自定义附加信息，用来给这条信息打标记
+      // name: 'Home',
+      component: () => import('@/views/Layout.vue'),
+      redirect: '/status',
+      // meta: { requiresAuth: true }, // 路由自定义附加信息，用来给这条信息打标记
+      children: [
+        { path: 'status', name: 'SpotStatus', component: () => import('@/views/SpotStatus.vue'), meta: { title: '车位状态' }},
+        { path: 'area', name: 'AreaManage', component: () => import('@/views/admin/AreaManage.vue'), meta: { title: '停车区管理', requiresAdmin: true } },
+        { path: 'spots', name: 'SpotManage', component: () => import('@/views/admin/SpotManage.vue'), meta: { title: '车位管理', requiresAdmin: true } }
+      ]
     },
   ],
 })

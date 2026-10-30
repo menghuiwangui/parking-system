@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: campus-parking-system
+  datasource:
+    url: jdbc:mysql://localhost:3306/campus_parking?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 160150
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 8080
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      banner: false
+
+# 自定义 JWT 配置
+jwt:
+  # 密钥必须至少32字符，生产环境用环境变量注入
+  secret: campus-parking-jwt-secret-key-please-change-in-production-2024
+  expire-hours: 24    # token有效期24小时
